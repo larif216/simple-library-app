@@ -50,14 +50,14 @@ type BookRepository struct {
 	HTTPClient *http.Client
 }
 
-func NewBookRepository(baseUrl string, client *http.Client) BookRepository {
-	return BookRepository{
+func NewBookRepository(baseUrl string, client *http.Client) *BookRepository {
+	return &BookRepository{
 		BaseURL:    baseUrl,
 		HTTPClient: client,
 	}
 }
 
-func (r BookRepository) GetBySubject(subject string) ([]*entity.Book, error) {
+func (r *BookRepository) GetBySubject(subject string) ([]*entity.Book, error) {
 	url := fmt.Sprintf("%s/%s.json", r.BaseURL, subject)
 
 	resp, err := r.HTTPClient.Get(url)
