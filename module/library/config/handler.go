@@ -10,5 +10,5 @@ func RegisterLibraryHandlers(router *mux.Router, config *LibraryConfig) {
 	uc := NewLibraryUsecase(config)
 	h := handler.NewLibraryHandler(uc)
 
-	router.HandleFunc("/api/books/{subject}", h.ListBook).Methods("GET")
+	router.HandleFunc("/api/books", h.ListBook).Methods("GET")
 }
