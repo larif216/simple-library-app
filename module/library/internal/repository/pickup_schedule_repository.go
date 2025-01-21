@@ -18,22 +18,22 @@ func NewPickupScheduleRepository() *PickupScheduleRepository {
 	}
 }
 
-func (r *PickupScheduleRepository) Create(schedule entity.PickupSchedule) {
+func (r *PickupScheduleRepository) Create(schedule *entity.PickupSchedule) {
 	r.mutex.Lock()
 	defer r.mutex.Unlock()
 
 	schedule.ID = r.nextID
 	r.nextID++
-	r.pickupSchedules = append(r.pickupSchedules, schedule)
+	r.pickupSchedules = append(r.pickupSchedules, *schedule)
 }
 
-func (r *PickupScheduleRepository) FindByBookEditionNumber(editionNumber string) *entity.Book {
+func (r *PickupScheduleRepository) GetByBookEditionNumber(editionNumber string) *entity.PickupSchedule {
 	r.mutex.Lock()
 	defer r.mutex.Unlock()
 
 	for _, schedule := range r.pickupSchedules {
 		if schedule.Book.EditionNumber == editionNumber {
-			return &schedule.Book
+			return &schedule
 		}
 	}
 

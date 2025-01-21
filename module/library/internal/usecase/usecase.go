@@ -1,13 +1,16 @@
 package usecase
 
 type LibraryUsecase struct {
-	bookRepo BookRepository
+	bookRepo           BookRepository
+	pickupScheduleRepo PickupScheduleRepository
 }
 
 func NewLibraryUseCase(
 	bookRepo BookRepository,
+	pickupScheduleRepo PickupScheduleRepository,
 ) *LibraryUsecase {
 	return &LibraryUsecase{
-		bookRepo: bookRepo,
+		bookRepo:           bookRepo,
+		pickupScheduleRepo: pickupScheduleRepo,
 	}
 }
