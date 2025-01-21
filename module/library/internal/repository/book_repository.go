@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"simple-library-app/module/library/internal/entity"
+	"simple-library-app/module/library/entity"
 )
 
 type book struct {

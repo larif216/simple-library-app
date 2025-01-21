@@ -1,6 +1,6 @@
 package usecase
 
-import "simple-library-app/module/library/internal/entity"
+import "simple-library-app/module/library/entity"
 
 type BookRepository interface {
 	GetBySubject(subject string) ([]*entity.Book, error)

@@ -1,6 +1,6 @@
 package usecase
 
-import "simple-library-app/module/library/internal/entity"
+import "simple-library-app/module/library/entity"
 
 func (uc *LibraryUsecase) ListBook(subject string) ([]*entity.Book, error) {
 	books, err := uc.bookRepo.GetBySubject(subject)
