@@ -1,6 +1,9 @@
 package usecase
 
-import "simple-library-app/module/library/entity"
+import (
+	"fmt"
+	"simple-library-app/module/library/entity"
+)
 
 func (uc *LibraryUsecase) ListBook(subject string) ([]*entity.Book, error) {
 	books, err := uc.bookRepo.GetBySubject(subject)
@@ -13,13 +16,10 @@ func (uc *LibraryUsecase) ListBook(subject string) ([]*entity.Book, error) {
 		if book.EditionNumber == "" {
 			continue
 		}
-
+		fmt.Println("DEBUG", book)
 		schedule := uc.pickupScheduleRepo.GetByBookEditionNumber(book.EditionNumber)
-		if schedule != nil {
-			book.IsAvailable = false
-		} else {
-			book.IsAvailable = true
-		}
+
+		book.IsAvailable = schedule == nil
 
 		filteredBooks = append(filteredBooks, book)
 	}
