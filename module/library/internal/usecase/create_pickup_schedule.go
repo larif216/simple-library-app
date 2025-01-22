@@ -22,6 +22,10 @@ func (uc *LibraryUsecase) CreatePickupSchedule(req entity.CreatePickupScheduleRe
 		return nil, err
 	}
 
+	if book == nil {
+		return nil, errors.New("book not found")
+	}
+
 	schedule := &entity.PickupSchedule{
 		Book:     *book,
 		DateTime: parsedDateTime,

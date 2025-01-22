@@ -78,7 +78,7 @@ func NewBookRepository(baseUrl string, client *http.Client) *BookRepository {
 }
 
 func (r *BookRepository) GetBySubject(subject string) ([]*entity.Book, error) {
-	url := fmt.Sprintf("%s/%s.json", r.BaseURL, subject)
+	url := fmt.Sprintf("%s/subjects/%s.json", r.BaseURL, subject)
 
 	resp, err := r.HTTPClient.Get(url)
 	if err != nil {
