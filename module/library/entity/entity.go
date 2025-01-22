@@ -6,6 +6,7 @@ type Book struct {
 	Title         string
 	Authors       []string
 	EditionNumber string
+	IsAvailable   bool
 }
 
 type PickupSchedule struct {
