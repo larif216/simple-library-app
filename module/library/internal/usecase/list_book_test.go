@@ -2,14 +2,12 @@ package usecase_test
 
 import (
 	"errors"
-	"fmt"
 	"simple-library-app/module/library/entity"
 	"simple-library-app/module/library/internal/usecase"
 	umock "simple-library-app/module/library/internal/usecase/mock"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -49,10 +47,6 @@ func (suite *ListBookUsecaseTestSuite) TestListBook() {
 
 	suite.mockPickupRepo.On("GetByBookEditionNumber", "12345").Return(&entity.PickupSchedule{}).Once()
 	suite.mockPickupRepo.On("GetByBookEditionNumber", "67890").Return(nil).Once()
-
-	suite.mockPickupRepo.On("GetByBookEditionNumber", "12345").Return(&entity.PickupSchedule{}).Once().Run(func(args mock.Arguments) {
-		fmt.Println("GetByBookEditionNumber called with:", args)
-	})
 
 	result, err := suite.libraryUsecase.ListBook("Science")
 

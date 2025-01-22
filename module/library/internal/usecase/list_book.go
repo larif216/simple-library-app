@@ -1,7 +1,6 @@
 package usecase
 
 import (
-	"fmt"
 	"simple-library-app/module/library/entity"
 )
 
@@ -16,7 +15,6 @@ func (uc *LibraryUsecase) ListBook(subject string) ([]*entity.Book, error) {
 		if book.EditionNumber == "" {
 			continue
 		}
-		fmt.Println("DEBUG", book)
 		schedule := uc.pickupScheduleRepo.GetByBookEditionNumber(book.EditionNumber)
 
 		book.IsAvailable = schedule == nil
