@@ -39,3 +39,13 @@ func (r *PickupScheduleRepository) GetByBookEditionNumber(editionNumber string) 
 
 	return nil
 }
+
+func (r *PickupScheduleRepository) List() []entity.PickupSchedule {
+	r.mutex.Lock()
+	defer r.mutex.Unlock()
+
+	schedulesCopy := make([]entity.PickupSchedule, len(r.pickupSchedules))
+	copy(schedulesCopy, r.pickupSchedules)
+
+	return schedulesCopy
+}

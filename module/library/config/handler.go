@@ -13,6 +13,7 @@ func RegisterLibraryHandlers(router *mux.Router, config *LibraryConfig) {
 
 	router.HandleFunc("/api/books", h.ListBook).Methods("GET")
 	router.HandleFunc("/api/pickup-schedule/create", h.CreatePickupSchedule).Methods("POST")
+	router.HandleFunc("/api/pickup-schedule", h.ListPickupSchedule).Methods("GET")
 
 	router.Use(corsMiddleware)
 }

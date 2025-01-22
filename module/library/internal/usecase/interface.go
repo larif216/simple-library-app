@@ -10,9 +10,11 @@ type BookRepository interface {
 type PickupScheduleRepository interface {
 	Create(schedule *entity.PickupSchedule)
 	GetByBookEditionNumber(editionNumber string) *entity.PickupSchedule
+	List() []entity.PickupSchedule
 }
 
 type LibraryUsecases interface {
 	ListBook(subject string) ([]*entity.Book, error)
 	CreatePickupSchedule(req entity.CreatePickupScheduleRequest) (*entity.CreatePickupScheduleResponse, error)
+	ListPickupSchedule() []entity.PickupSchedule
 }
